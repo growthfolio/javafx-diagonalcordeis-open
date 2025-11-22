@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.controlsfx.control.*?>
+
+<BorderPane prefHeight="700" prefWidth="1000" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.diagonal.cordeis.controller.ImpressaoController">
+    <!-- HEADER SECTION -->
+    <top>
+        <VBox>
+            <ToolBar style="-fx-background-color: none; -fx-padding: 10;">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <FontAwesomeIconView fill="#2196F3" glyphName="PRINT" size="20" />
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333;" text="Central de Impressão" />
+                </HBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <Label style="-fx-font-size: 11px; -fx-text-fill: #666; -fx-font-style: italic;" text="Seleção múltipla • Impressão em lote" />
+            </ToolBar>
+            
+            <!-- STATUS INDICATOR -->
+            <HBox alignment="CENTER_LEFT" spacing="8" style="-fx-padding: 0 15 5 15; -fx-background-color: #E8F5E8; -fx-border-color: #4CAF50; -fx-border-width: 0 0 0 3;">
+                <FontAwesomeIconView fill="#4CAF50" glyphName="CHECK_CIRCLE" size="12" />
+                <Label style="-fx-font-size: 11px; -fx-text-fill: #2E7D32;" text="Sistema configurado para livros e coleções com capa integrada no PDF" />
+            </HBox>
+        </VBox>
+    </top>
+    
+    <center>
+        <!-- TAB PANE PRINCIPAL -->
+        <TabPane fx:id="tabPane" style="-fx-padding: 15;" tabClosingPolicy="UNAVAILABLE">
+            
+            <!-- ABA 1: LIVROS INDIVIDUAIS -->
+            <Tab fx:id="tabLivro" text="Livros">
+                <graphic>
+                    <HBox alignment="CENTER_LEFT" spacing="5">
+                        <FontAwesomeIconView fill="#4CAF50" glyphName="BOOK" size="14" />
+                        <Label text="Livros" />
+                    </HBox>
+                </graphic>
+                <content>
+                    <VBox spacing="15" style="-fx-padding: 15;">
+                        
+                        <!-- HEADER COM BUSCA E CONTROLES -->
+                        <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-border-width: 1; -fx-padding: 15;">
+                            
+                            <!-- BUSCA -->
+                            <VBox spacing="5">
+                                <Label text="🔍 Buscar Livros" style="-fx-font-weight: bold; -fx-text-fill: #555; -fx-font-size: 12px;"/>
+                                <HBox spacing="8" alignment="CENTER_LEFT">
+                                    <TextField fx:id="campoBuscaLivros" promptText="Digite título, SKU ou tipo..." prefWidth="250" 
+                                              style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #ddd;"/>
+                                    <Button fx:id="btnLimparBuscaLivros" onAction="#limparBuscaLivros" visible="false"
+                                            style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-background-radius: 3; -fx-font-size: 10px;">
+                                        <graphic><FontAwesomeIconView glyphName="TIMES" size="10" fill="white"/></graphic>
+                                    </Button>
+                                </HBox>
+                            </VBox>
+                            
+                            <!-- SELEÇÃO E CONTADORES -->
+                            <VBox spacing="5" alignment="CENTER">
+                                <Label text="📊 Seleção" style="-fx-font-weight: bold; -fx-text-fill: #555; -fx-font-size: 12px;"/>
+                                <HBox spacing="10" alignment="CENTER">
+                                    <Button fx:id="btnSelecionarTodosLivros" text="Selecionar Todos" onAction="#selecionarTodosLivros"
+                                            style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 3; -fx-font-size: 11px;"/>
+                                    <Button fx:id="btnLimparSelecaoLivros" text="Limpar Seleção" onAction="#limparSelecaoLivros"
+                                            style="-fx-background-color: #757575; -fx-text-fill: white; -fx-background-radius: 3; -fx-font-size: 11px;"/>
+                                </HBox>
+                                <Label fx:id="labelContadorLivros" text="0 de 0 selecionados" 
+                                       style="-fx-font-size: 11px; -fx-text-fill: #666;"/>
+                            </VBox>
+                            
+                            <!-- IMPRESSORA -->
+                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                <Label text="🖨️ Impressora" style="-fx-font-weight: bold; -fx-text-fill: #555; -fx-font-size: 12px;"/>
+                                <HBox spacing="8" alignment="CENTER_LEFT">
+                                    <ComboBox fx:id="comboImpressora" prefWidth="200" promptText="Selecione a impressora"
+                                             style="-fx-background-radius: 5;"/>
+                                    <Button fx:id="btnAtualizarImpressoras" onAction="#atualizarImpressoras" 
+                                            style="-fx-background-color: #f0f0f0; -fx-border-color: #ccc; -fx-background-radius: 3;">
+                                        <graphic><FontAwesomeIconView glyphName="REFRESH" size="12"/></graphic>
+                                        <tooltip><Tooltip text="Atualizar lista de impressoras"/></tooltip>
+                                    </Button>
+                                </HBox>
+                            </VBox>
+                            
+                            <!-- AÇÃO PRINCIPAL -->
+                            <VBox spacing="5" alignment="CENTER">
+                                <Label text="⚡ Ação" style="-fx-font-weight: bold; -fx-text-fill: #555; -fx-font-size: 12px;"/>
+                                <Button fx:id="btnImprimirSelecionados" text="Imprimir Selecionados" onAction="#imprimirLivrosSelecionados"
+                                        prefWidth="150" prefHeight="35" disable="true"
+                                        style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;">
+                                    <graphic><FontAwesomeIconView glyphName="PRINT" size="14" fill="white"/></graphic>
+                                </Button>
+                                <ProgressIndicator fx:id="progressIndicator" prefWidth="20" prefHeight="20" visible="false"/>
+                            </VBox>
+                        </HBox>
+                        
+                        <!-- TABELA DE LIVROS -->
+                        <VBox VBox.vgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-border-width: 1;">
+                            
+                            <!-- HEADER DA TABELA -->
+                            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 15 15 10 15; -fx-border-color: #f0f0f0; -fx-border-width: 0 0 1 0;">
+                                <FontAwesomeIconView glyphName="TABLE" size="14" fill="#666"/>
+                                <Label text="Lista de Livros Disponíveis" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #333;"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label fx:id="labelResultadosLivros" text="0 livros" style="-fx-font-size: 12px; -fx-text-fill: #666;"/>
+                            </HBox>
+                            
+                            <!-- TABELA -->
+                            <TableView fx:id="tabelaLivros" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;">
+                                <columns>
+                                    <TableColumn fx:id="colSelecao" prefWidth="60" text="✓" sortable="false" resizable="false"/>
+                                    <TableColumn fx:id="colSku" prefWidth="100" text="SKU"/>
+                                    <TableColumn fx:id="colTitulo" prefWidth="300" text="Título"/>
+                                    <TableColumn fx:id="colTipo" prefWidth="80" text="Tipo"/>
+                                    <TableColumn fx:id="colPaginas" prefWidth="80" text="Páginas"/>
+                                    <TableColumn fx:id="colArquivo" prefWidth="200" text="Arquivo"/>
+                                    <TableColumn fx:id="colAcoes" minWidth="120" prefWidth="140" text="Ações" sortable="false"/>
+                                </columns>
+                                <placeholder>
+                                    <VBox alignment="CENTER" spacing="10" style="-fx-padding: 40;">
+                                        <FontAwesomeIconView glyphName="BOOK" size="48" fill="#ccc"/>
+                                        <Label text="Nenhum livro encontrado" style="-fx-font-size: 14px; -fx-text-fill: #666;"/>
+                                        <Label text="Verifique os filtros de busca ou adicione novos livros" style="-fx-font-size: 12px; -fx-text-fill: #999;"/>
+                                    </VBox>
+                                </placeholder>
+                            </TableView>
+                        </VBox>
+                    </VBox>
+                </content>
+            </Tab>
+            
+            <!-- ABA 2: COLEÇÕES -->
+            <Tab fx:id="tabColecao" text="Coleções">
+                <graphic>
+                    <HBox alignment="CENTER_LEFT" spacing="5">
+                        <FontAwesomeIconView fill="#9C27B0" glyphName="FOLDER" size="14" />
+                        <Label text="Coleções" />
+                    </HBox>
+                </graphic>
+                <content>
+                    <VBox spacing="15" style="-fx-padding: 15;">
+                        
+                        <!-- HEADER COM BUSCA E CONTROLES -->
+                        <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-border-width: 1; -fx-padding: 15;">
+                            
+                            <!-- BUSCA -->
+                            <VBox spacing="5">
+                                <Label text="🔍 Buscar Coleções" style="-fx-font-weight: bold; -fx-text-fill: #555; -fx-font-size: 12px;"/>
+                                <HBox spacing="8" alignment="CENTER_LEFT">
+                                    <TextField fx:id="campoBuscaColecoes" promptText="Digite nome ou SKU..." prefWidth="250" 
+                                              style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #ddd;"/>
+                                    <Button fx:id="btnLimparBuscaColecoes" onAction="#limparBuscaColecoes" visible="false"
+                                            style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-background-radius: 3; -fx-font-size: 10px;">
+                                        <graphic><FontAwesomeIconView glyphName="TIMES" size="10" fill="white"/></graphic>
+                                    </Button>
+                                </HBox>
+                            </VBox>
+                            
+                            <!-- SELEÇÃO E CONTADORES -->
+                            <VBox spacing="5" alignment="CENTER">
+                                <Label text="📊 Seleção" style="-fx-font-weight: bold; -fx-text-fill: #555; -fx-font-size: 12px;"/>
+                                <HBox spacing="10" alignment="CENTER">
+                                    <Button fx:id="btnSelecionarTodasColecoes" text="Selecionar Todas" onAction="#selecionarTodasColecoes"
+                                            style="-fx-background-color: #9C27B0; -fx-text-fill: white; -fx-background-radius: 3; -fx-font-size: 11px;"/>
+                                    <Button fx:id="btnLimparSelecaoColecoes" text="Limpar Seleção" onAction="#limparSelecaoColecoes"
+                                            style="-fx-background-color: #757575; -fx-text-fill: white; -fx-background-radius: 3; -fx-font-size: 11px;"/>
+                                </HBox>
+                                <Label fx:id="labelContadorColecoes" text="0 de 0 selecionadas" 
+                                       style="-fx-font-size: 11px; -fx-text-fill: #666;"/>
+                            </VBox>
+                            
+                            <!-- IMPRESSORA -->
+                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                <Label text="🖨️ Impressora" style="-fx-font-weight: bold; -fx-text-fill: #555; -fx-font-size: 12px;"/>
+                                <HBox spacing="8" alignment="CENTER_LEFT">
+                                    <ComboBox fx:id="comboImpressoraColecao" prefWidth="200" promptText="Selecione a impressora"
+                                             style="-fx-background-radius: 5;"/>
+                                    <Button fx:id="btnAtualizarImpressorasColecao" onAction="#atualizarImpressorasColecao" 
+                                            style="-fx-background-color: #f0f0f0; -fx-border-color: #ccc; -fx-background-radius: 3;">
+                                        <graphic><FontAwesomeIconView glyphName="REFRESH" size="12"/></graphic>
+                                        <tooltip><Tooltip text="Atualizar lista de impressoras"/></tooltip>
+                                    </Button>
+                                </HBox>
+                            </VBox>
+                            
+                            <!-- AÇÃO PRINCIPAL -->
+                            <VBox spacing="5" alignment="CENTER">
+                                <Label text="⚡ Ação" style="-fx-font-weight: bold; -fx-text-fill: #555; -fx-font-size: 12px;"/>
+                                <Button fx:id="btnImprimirColecoesSelecionadas" text="Imprimir Selecionadas" onAction="#imprimirColecoesSelecionadas"
+                                        prefWidth="150" prefHeight="35" disable="true"
+                                        style="-fx-background-color: #9C27B0; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;">
+                                    <graphic><FontAwesomeIconView glyphName="PRINT" size="14" fill="white"/></graphic>
+                                </Button>
+                                <ProgressIndicator fx:id="progressIndicatorColecao" prefWidth="20" prefHeight="20" visible="false"/>
+                            </VBox>
+                        </HBox>
+                        
+                        <!-- TABELA DE COLEÇÕES -->
+                        <VBox VBox.vgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-border-width: 1;">
+                            
+                            <!-- HEADER DA TABELA -->
+                            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 15 15 10 15; -fx-border-color: #f0f0f0; -fx-border-width: 0 0 1 0;">
+                                <FontAwesomeIconView glyphName="TABLE" size="14" fill="#666"/>
+                                <Label text="Lista de Coleções Disponíveis" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #333;"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label fx:id="labelResultadosColecoes" text="0 coleções" style="-fx-font-size: 12px; -fx-text-fill: #666;"/>
+                            </HBox>
+                            
+                            <!-- TABELA -->
+                            <TableView fx:id="tabelaColecoes" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;">
+                                <columns>
+                                    <TableColumn fx:id="colSelecaoColecao" prefWidth="60" text="✓" sortable="false" resizable="false"/>
+                                    <TableColumn fx:id="colSkuColecao" prefWidth="100" text="SKU"/>
+                                    <TableColumn fx:id="colNomeColecao" prefWidth="250" text="Nome"/>
+                                    <TableColumn fx:id="colQuantidadeLivros" prefWidth="100" text="Livros"/>
+                                    <TableColumn fx:id="colNomesLivros" prefWidth="300" text="Livros da Coleção"/>
+                                    <TableColumn fx:id="colAcoesColecao" prefWidth="120" text="Ações" sortable="false"/>
+                                </columns>
+                                <placeholder>
+                                    <VBox alignment="CENTER" spacing="10" style="-fx-padding: 40;">
+                                        <FontAwesomeIconView glyphName="FOLDER" size="48" fill="#ccc"/>
+                                        <Label text="Nenhuma coleção encontrada" style="-fx-font-size: 14px; -fx-text-fill: #666;"/>
+                                        <Label text="Verifique os filtros de busca ou crie novas coleções" style="-fx-font-size: 12px; -fx-text-fill: #999;"/>
+                                    </VBox>
+                                </placeholder>
+                            </TableView>
+                        </VBox>
+                    </VBox>
+                </content>
+            </Tab>
+        </TabPane>
+    </center>
+</BorderPane>

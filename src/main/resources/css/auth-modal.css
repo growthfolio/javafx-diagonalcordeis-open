@@ -1,0 +1,64 @@
+/* Estilos específicos para modais de autenticação */
+
+/* Garantir que o StackPane raiz do modal não tenha tamanho fixo desnecessário */
+.auth-modal-root {
+    -fx-background-color: transparent;
+    -fx-pref-width: -1;
+    -fx-pref-height: -1;
+    -fx-max-width: -1;
+    -fx-max-height: -1;
+}
+
+/* Container do ScrollPane deve se adaptar ao conteúdo */
+.auth-modal-scroll {
+    -fx-background-color: transparent;
+    -fx-pref-width: -1;
+    -fx-pref-height: -1;
+    -fx-fit-to-width: true;
+    -fx-fit-to-height: true;
+}
+
+/* Garantir que o container central não expanda desnecessariamente */
+.auth-modal-center {
+    -fx-alignment: center;
+    -fx-pref-width: -1;
+    -fx-pref-height: -1;
+}
+
+/* Formulário principal com largura controlada */
+.auth-form-container {
+    -fx-max-width: 420;
+    -fx-pref-width: 420;
+    -fx-min-width: 350;
+    -fx-spacing: 8;
+    -fx-alignment: center;
+}
+
+/* Otimizações para campos do formulário */
+.auth-field-container {
+    -fx-max-width: infinity;
+    -fx-pref-width: -1;
+    -fx-spacing: 6;
+    -fx-alignment: center-left;
+}
+
+/* Animações suaves para modais */
+.auth-modal-transition {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 20, 0.0, 0, 2);
+}
+
+/* Responsividade para diferentes tamanhos de tela */
+@media screen and (max-width: 480px) {
+    .auth-form-container {
+        -fx-max-width: 350;
+        -fx-pref-width: 350;
+        -fx-padding: 24;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .auth-form-container {
+        -fx-max-width: 450;
+        -fx-pref-width: 450;
+    }
+}

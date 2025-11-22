@@ -1,0 +1,286 @@
+/* Root */
+.root {
+    -fx-background-color: linear-gradient(to bottom right, #4f46e5, #6366f1);
+    background: linear-gradient(to bottom right, #4f46e5, #6366f1);
+}
+
+/* Auth Containers */
+.login-container, .register-container {
+    -fx-background-color: white;
+    background-color: white;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 15, 0, 0, 4);
+    -fx-padding: 30px;
+    padding: 30px;
+    -fx-max-width: 400px;
+    max-width: 400px;
+    -fx-min-width: 320px;
+    min-width: 320px;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 15, 0, 0, 4);
+    -fx-padding: 30px;
+    padding: 30px;
+    -fx-max-width: 400px;
+    max-width: 400px;
+    -fx-min-width: 320px;
+    min-width: 320px;
+}
+
+/* Input Containers */
+.input-container {
+    -fx-background-color: #f8fafc;
+    background-color: #f8fafc;
+    -fx-background-radius: 8px;
+    -fx-border-color: #e2e8f0;
+    border-color: #e2e8f0;
+    -fx-border-radius: 8px;
+    border-radius: 8px;
+    -fx-border-width: 1px;
+    border-width: 1px;
+    -fx-padding: 12 16;
+    padding: 12px 16px;
+    -fx-spacing: 12;
+    spacing: 12px;
+    -fx-alignment: center-left;
+    -fx-transition: all 0.2s ease-in-out;
+}
+
+.input-container:focused-within {
+    -fx-background-color: #f0f9ff;
+    background-color: #f0f9ff;
+    -fx-border-color: #6366f1;
+    border-color: #6366f1;
+    -fx-border-width: 2px;
+    border-width: 2px;
+    -fx-border-radius: 8px;
+    border-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.2), 8, 0, 0, 2);
+}
+
+.input-container:hover:not(:focused-within) {
+    -fx-background-color: #f8fafc;
+    background-color: #f8fafc;
+    -fx-border-color: #94a3b8;
+    border-color: #94a3b8;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0, 0, 1);
+}
+
+/* Text Fields */
+.login-field, .register-field {
+    -fx-background-color: transparent;
+    background-color: transparent;
+    -fx-padding: 0;
+    padding: 0;
+    -fx-pref-height: 32px;
+    -fx-font-size: 14px;
+    font-size: 14px;
+    -fx-prompt-text-fill: #9ca3af;
+}
+
+.input-icon {
+    -fx-fill: #6b7280;
+    fill: #6b7280;
+}
+
+/* Buttons */
+.login-button, .register-button {
+    -fx-background-color: #4f46e5;
+    background-color: #4f46e5;
+    -fx-text-fill: white;
+    color: white;
+    -fx-font-size: 14px;
+    font-size: 14px;
+    -fx-font-weight: bold;
+    font-weight: bold;
+    -fx-padding: 14 24;
+    padding: 14px 24px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    cursor: pointer;
+    -fx-effect: dropshadow(gaussian, rgba(79, 70, 229, 0.3), 10, 0, 0, 4);
+    -fx-min-height: 40px;
+    min-height: 40px;
+}
+
+.login-button:hover, .register-button:hover {
+    -fx-background-color: #4338ca;
+    background-color: #4338ca;
+    -fx-effect: dropshadow(gaussian, rgba(79, 70, 229, 0.4), 12, 0, 0, 6);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.back-button {
+    -fx-background-color: #f3f4f6;
+    background-color: #f3f4f6;
+    -fx-text-fill: #374151;
+    color: #374151;
+    -fx-font-size: 14px;
+    font-size: 14px;
+    -fx-font-weight: bold;
+    font-weight: bold;
+    -fx-padding: 14 24;
+    padding: 14px 24px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    cursor: pointer;
+    -fx-min-height: 40px;
+    min-height: 40px;
+    -fx-border-color: #e5e7eb;
+    border-color: #e5e7eb;
+    -fx-border-width: 1px;
+    border-width: 1px;
+    -fx-border-radius: 8px;
+    border-radius: 8px;
+}
+
+.back-button:hover {
+    -fx-background-color: #e5e7eb;
+    background-color: #e5e7eb;
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.back-button:hover {
+    -fx-background-color: #e5e7eb;
+    background-color: #e5e7eb;
+}
+
+/* Status Messages */
+.error-label {
+    -fx-text-fill: #dc2626;
+    color: #dc2626;
+    -fx-font-size: 12px;
+    font-size: 12px;
+    -fx-padding: 6 0;
+    padding: 6px 0;
+    -fx-graphic-text-gap: 6;
+    -fx-alignment: center-left;
+}
+
+.error-label .graphic {
+    -fx-fill: #dc2626;
+    fill: #dc2626;
+}
+
+.success-label {
+    -fx-text-fill: #059669;
+    color: #059669;
+    -fx-font-size: 12px;
+    font-size: 12px;
+    -fx-padding: 6 0;
+    padding: 6px 0;
+    -fx-graphic-text-gap: 6;
+    -fx-alignment: center-left;
+}
+
+.success-label .graphic {
+    -fx-fill: #059669;
+    fill: #059669;
+}
+
+/* Password Strength Bar */
+.password-strength-container {
+    -fx-spacing: 5;
+    spacing: 5px;
+    -fx-padding: 5 0;
+    padding: 5px 0;
+}
+
+.password-strength-bar {
+    -fx-pref-height: 4px;
+    -fx-background-color: #e5e7eb;
+    background-color: #e5e7eb;
+    -fx-background-radius: 2px;
+}
+
+.password-strength-bar .bar {
+    -fx-background-radius: 2px;
+    -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.1), 2, 0, 0, 1);
+}
+
+.password-strength-bar.weak .bar {
+    -fx-background-color: #ef4444;
+    background-color: #ef4444;
+}
+
+.password-strength-bar.medium .bar {
+    -fx-background-color: #f59e0b;
+    background-color: #f59e0b;
+}
+
+.password-strength-bar.strong .bar {
+    -fx-background-color: #10b981;
+    background-color: #10b981;
+}
+
+.password-strength-text {
+    -fx-font-size: 12px;
+    font-size: 12px;
+}
+
+.password-strength-text.weak {
+    -fx-text-fill: #ef4444;
+    color: #ef4444;
+}
+
+.password-strength-text.medium {
+    -fx-text-fill: #f59e0b;
+    color: #f59e0b;
+}
+
+.password-strength-text.strong {
+    -fx-text-fill: #10b981;
+    color: #10b981;
+}
+
+/* Field Validation */
+.input-container.error {
+    -fx-background-color: #fee2e2;
+    background-color: #fee2e2;
+    -fx-border-color: #ef4444;
+    border-color: #ef4444;
+}
+
+.input-container.success {
+    -fx-background-color: #ecfdf5;
+    background-color: #ecfdf5;
+    -fx-border-color: #10b981;
+    border-color: #10b981;
+}
+
+/* Remember Me Checkbox */
+.remember-me {
+    -fx-font-size: 12px;
+    font-size: 12px;
+    -fx-text-fill: #6b7280;
+    color: #6b7280;
+}
+
+/* Links */
+.auth-link {
+    -fx-text-fill: #4f46e5;
+    color: #4f46e5;
+    -fx-font-size: 12px;
+    font-size: 12px;
+    -fx-cursor: hand;
+    cursor: pointer;
+    -fx-underline: false;
+}
+
+.auth-link:hover {
+    -fx-underline: true;
+    text-decoration: underline;
+}
+
+/* Success Message */
+.success-message {
+    -fx-text-fill: #10b981;
+    color: #10b981;
+    -fx-font-size: 14px;
+    font-size: 14px;
+    -fx-font-weight: bold;
+    font-weight: bold;
+    -fx-padding: 8 0;
+    padding: 8px 0;
+}

@@ -1,0 +1,140 @@
+================================================================================
+                    DIAGONAL CORDÉIS - Guia de Instalação
+================================================================================
+
+REQUISITOS DO SISTEMA:
+----------------------
+- Windows 10 ou superior (64 bits)
+- 4 GB de RAM (mínimo)
+- 500 MB de espaço em disco
+- Impressoras configuradas no Windows (para impressão)
+
+* Se usar instalador com JRE incluído: NÃO precisa instalar Java
+* Se usar instalador simples: Requer Java 21 ou superior
+
+
+LOCALIZAÇÃO DOS ARQUIVOS:
+-------------------------
+Após a instalação:
+
+✓ Aplicação instalada em:
+  C:\Program Files\DiagonalCordeis\
+  (ou pasta escolhida durante instalação)
+
+✓ Banco de dados criado automaticamente em:
+  %APPDATA%\DiagonalCordeis\data\diagonalcordeis.db
+  Exemplo: C:\Users\SeuNome\AppData\Roaming\DiagonalCordeis\data\
+
+✓ Para acessar a pasta de dados:
+  1. Pressione Windows + R
+  2. Digite: %APPDATA%\DiagonalCordeis\data
+  3. Pressione Enter
+
+
+COMO INSTALAR:
+--------------
+1. Execute o arquivo: DiagonalCordeis-Setup-1.0.0.exe
+2. Clique em "Próximo" no assistente de instalação
+3. Escolha a pasta de instalação (ou deixe o padrão)
+4. Clique em "Instalar"
+5. Aguarde a conclusão
+6. Clique em "Concluir"
+
+
+COMO EXECUTAR:
+--------------
+Opção 1: Menu Iniciar
+  - Clique no Menu Iniciar do Windows
+  - Procure por "Diagonal Cordéis"
+  - Clique no ícone
+
+Opção 2: Área de Trabalho
+  - Duplo clique no atalho "Diagonal Cordéis"
+
+
+PRIMEIRO ACESSO:
+---------------
+1. Na tela de login, use as credenciais padrão:
+   Usuário: admin
+   Senha: admin123
+   (ou conforme instruído pelo administrador)
+
+2. IMPORTANTE: Altere a senha padrão no primeiro acesso!
+
+
+BACKUP DOS DADOS:
+-----------------
+Para fazer backup do banco de dados:
+
+1. Feche a aplicação completamente
+2. Navegue até: %APPDATA%\DiagonalCordeis\data\
+3. Copie o arquivo: diagonalcordeis.db
+4. Guarde em local seguro (pen drive, nuvem, etc)
+
+Para restaurar:
+1. Feche a aplicação
+2. Cole o arquivo diagonalcordeis.db de volta na pasta data
+
+
+CONFIGURAR IMPRESSORAS:
+-----------------------
+1. Abra "Configurações" do Windows
+2. Vá em "Dispositivos" → "Impressoras e scanners"
+3. Adicione as impressoras para miolo e capa
+4. Na aplicação, configure quais impressoras usar para cada tipo
+
+
+DESINSTALAR:
+------------
+Opção 1: Painel de Controle
+  - Painel de Controle → Programas → Desinstalar um programa
+  - Selecione "Diagonal Cordéis"
+  - Clique em "Desinstalar"
+
+Opção 2: Configurações do Windows
+  - Configurações → Aplicativos
+  - Procure "Diagonal Cordéis"
+  - Clique em "Desinstalar"
+
+NOTA: A desinstalação remove a aplicação mas MANTÉM seus dados
+      (banco de dados em %APPDATA% não é deletado por segurança)
+
+
+PROBLEMAS COMUNS:
+-----------------
+
+❌ "Java não encontrado"
+   Solução: Instale Java 21 de https://adoptium.net/
+
+❌ Aplicação não inicia
+   Solução: Verifique se tem permissão de administrador
+            Execute como Administrador (botão direito → "Executar como administrador")
+
+❌ Não consegue imprimir
+   Solução: Verifique se impressoras estão instaladas e ligadas
+            Configure as impressoras na aplicação
+
+❌ Erro ao salvar dados
+   Solução: Verifique permissões na pasta %APPDATA%\DiagonalCordeis\
+
+
+SUPORTE:
+--------
+Para dúvidas ou problemas:
+- Email: suporte@diagonal.com.br
+- GitHub: https://github.com/diagonal-cordeis
+- Manual completo: Consulte o arquivo MANUAL_USUARIO.pdf
+
+
+LICENÇA:
+--------
+Este software foi desenvolvido por Diagonal.
+Uso conforme termos acordados.
+
+
+VERSÃO: 1.0.0
+DATA: 2024
+
+================================================================================
+                         Obrigado por usar Diagonal Cordéis!
+================================================================================

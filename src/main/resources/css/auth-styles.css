@@ -1,0 +1,174 @@
+/* Estilos para as telas de autenticação (login e cadastro) */
+
+/* Container principal */
+.auth-container {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #eee;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 1);
+}
+
+/* Cabeçalhos */
+.auth-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+.auth-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #666;
+}
+
+.app-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4f46e5;
+}
+
+/* Campos de entrada */
+.input-container {
+    -fx-background-color: #f9fafb;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-border-color: #ddd;
+    -fx-border-width: 1;
+    -fx-padding: 8 10;
+}
+
+.input-container:focused {
+    -fx-border-color: #4f46e5;
+}
+
+.input-field {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-font-size: 13px;
+}
+
+.input-icon {
+    -fx-fill: #666;
+}
+
+/* Botões */
+.primary-button {
+    -fx-background-color: #4f46e5;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4;
+    -fx-padding: 10 16;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #4338ca;
+}
+
+.secondary-button {
+    -fx-background-color: #f3f4f6;
+    -fx-text-fill: #4b5563;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4;
+    -fx-padding: 10 16;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #e5e7eb;
+}
+
+/* Mensagens */
+.error-label {
+    -fx-text-fill: #e11d48;
+    -fx-font-size: 11px;
+}
+
+.error-container {
+    -fx-background-color: #fee2e2;
+    -fx-background-radius: 4;
+    -fx-padding: 8;
+}
+
+.success-label {
+    -fx-text-fill: #059669;
+    -fx-font-size: 11px;
+}
+
+.success-container {
+    -fx-background-color: #ecfdf5;
+    -fx-background-radius: 4;
+    -fx-padding: 8;
+}
+
+/* Links */
+.auth-link {
+    -fx-text-fill: #4f46e5;
+    -fx-underline: false;
+    -fx-font-size: 12px;
+}
+
+.auth-link:hover {
+    -fx-text-fill: #4338ca;
+    -fx-underline: true;
+}
+
+/* Botão fechar */
+.close-button {
+    -fx-background-color: transparent;
+    -fx-padding: 2 6;
+    -fx-cursor: hand;
+}
+
+.close-button:hover {
+    -fx-background-color: #f3f4f6;
+    -fx-background-radius: 2;
+}
+
+/* Estilos para o botão fechar */
+.close-button {
+    -fx-background-color: transparent;
+    -fx-padding: 4 8;
+    -fx-cursor: hand;
+}
+
+.close-button:hover {
+    -fx-background-color: #f3f4f6;
+    -fx-background-radius: 2;
+}
+
+.close-button:pressed {
+    -fx-background-color: #e5e7eb;
+}
+
+.close-button:pressed {
+    -fx-background-color: #e5e7eb;
+}
+
+/* Medidor de força de senha */
+.password-strength-bar {
+    -fx-pref-height: 4;
+    -fx-background-radius: 2;
+    -fx-border-radius: 2;
+}
+
+.password-strength-bar .bar {
+    -fx-background-radius: 2;
+    -fx-background-insets: 0;
+}
+
+/* Verificação de senha */
+.password-strength-weak {
+    -fx-accent: #dc2626;
+}
+
+.password-strength-medium {
+    -fx-accent: #f59e0b;
+}
+
+.password-strength-strong {
+    -fx-accent: #059669;
+}

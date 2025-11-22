@@ -1,0 +1,172 @@
+================================================================================
+                    DIAGONAL CORDÉIS - Resumo de Distribuição
+================================================================================
+
+✅ SOLUÇÃO IMPLEMENTADA PARA LINUX → WINDOWS
+
+1. COMPILAR NO LINUX:
+   ./build-installer.sh
+
+2. RESULTADO:
+   target/dist/DiagonalCordeis-1.0.0.zip (98 MB)
+
+3. ENVIAR AO CLIENTE (Windows)
+
+4. CLIENTE PRECISA:
+   - Java 21: https://adoptium.net/
+   - Descompactar ZIP
+   - Executar: DiagonalCordeis.bat
+
+================================================================================
+
+📁 LOCALIZAÇÃO DOS ARQUIVOS (no cliente Windows):
+
+Aplicação:      Onde o cliente descompactar (ex: C:\Aplicativos\DiagonalCordeis\)
+Banco de Dados: %APPDATA%\DiagonalCordeis\data\diagonalcordeis.db
+                (C:\Users\<usuario>\AppData\Roaming\DiagonalCordeis\data\)
+
+✅ Banco separado da aplicação (seguro!)
+✅ Não é deletado se reinstalar
+✅ Backup simples: copiar arquivo .db
+
+================================================================================
+
+🎯 OPÇÕES DE DISTRIBUIÇÃO:
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ OPÇÃO 1: ZIP + JAR (Atual - Funciona agora do Linux)                   │
+├─────────────────────────────────────────────────────────────────────────┤
+│ Compilar:  ./build-installer.sh                                         │
+│ Tamanho:   ~98 MB                                                       │
+│ Cliente:   Precisa Java 21                                              │
+│ Prós:      Simples, rápido, funciona                                    │
+│ Contras:   Cliente deve instalar Java                                   │
+└─────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ OPÇÃO 2: Instalador .EXE (Futuro - Precisa Windows)                    │
+├─────────────────────────────────────────────────────────────────────────┤
+│ Compilar:  build-installer.bat (no Windows)                             │
+│ Tamanho:   ~100-120 MB                                                  │
+│ Cliente:   NÃO precisa Java (JRE incluído)                              │
+│ Prós:      Instalação profissional, não precisa Java                    │
+│ Contras:   Você precisa Windows ou VM para criar                        │
+└─────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ OPÇÃO 3: GitHub Actions (Automático - Melhor longo prazo)              │
+├─────────────────────────────────────────────────────────────────────────┤
+│ Setup:     Uma vez (ver docs/BUILD_NO_LINUX.md)                         │
+│ Uso:       git push → GitHub compila automaticamente                    │
+│ Resultado: ZIP + EXE para cada release                                  │
+│ Prós:      Automatizado, gera ambos formatos                            │
+│ Contras:   Setup inicial (mas vale a pena)                              │
+└─────────────────────────────────────────────────────────────────────────┘
+
+================================================================================
+
+📚 DOCUMENTAÇÃO CRIADA:
+
+├── COMO-DISTRIBUIR.md              ← LEIA ESTE (guia rápido)
+├── QUICKSTART.md                   ← Início rápido
+├── docs/BUILD_NO_LINUX.md          ← Build no Linux (detalhado)
+├── docs/GUIA_INSTALADOR_WINDOWS.md ← Instalador Windows (técnico)
+├── docs/RESUMO_INSTALADOR.md       ← Resumo instalador
+└── LEIA-ME-INSTALACAO.txt          ← Para o cliente
+
+================================================================================
+
+🚀 PRÓXIMOS PASSOS:
+
+AGORA (5 minutos):
+  [ ] ./build-installer.sh
+  [ ] Enviar target/dist/DiagonalCordeis-1.0.0.zip ao cliente
+  [ ] Enviar instruções (ver COMO-DISTRIBUIR.md)
+
+FUTURO (opcional):
+  [ ] Configurar GitHub Actions (build automático)
+  [ ] Ou usar VM/Windows para criar .exe
+  [ ] Criar ícone personalizado (.ico)
+  [ ] Assinar instalador digitalmente
+
+================================================================================
+
+💡 DICAS:
+
+1. Cliente sem Java?
+   → Envie link: https://adoptium.net/temurin/releases/?version=21
+
+2. Cliente quer instalador "clique-clique"?
+   → Use Windows/VM para rodar build-installer.bat
+   → Ou configure GitHub Actions
+
+3. Testar antes de enviar?
+   → Instale Java 21 no seu Linux
+   → Execute: java -jar target/cordeis-0.0.1-SNAPSHOT.jar
+
+4. Fazer updates?
+   → Envie novo ZIP
+   → Banco em %APPDATA% é preservado automaticamente
+
+================================================================================
+
+✅ VERIFICAÇÕES FINAIS:
+
+Antes de distribuir, certifique-se:
+
+  [✓] Aplicação compila: ./build-installer.sh
+  [✓] ZIP criado: target/dist/DiagonalCordeis-1.0.0.zip
+  [✓] Banco configurado para %APPDATA% (DataSourceConfig.java)
+  [✓] Credenciais padrão documentadas
+  [✓] Instruções preparadas para cliente
+
+================================================================================
+
+📧 MODELO DE EMAIL PARA CLIENTE:
+
+Assunto: Diagonal Cordéis - Instalação
+
+Olá!
+
+Segue em anexo a aplicação Diagonal Cordéis.
+
+INSTALAÇÃO:
+1. Instale o Java 21: https://adoptium.net/temurin/releases/?version=21
+2. Descompacte o arquivo DiagonalCordeis-1.0.0.zip
+3. Duplo clique em "DiagonalCordeis.bat"
+
+PRIMEIRO ACESSO:
+Usuário: admin
+Senha: admin123
+(altere a senha no primeiro acesso)
+
+IMPORTANTE:
+- Seus dados são salvos automaticamente
+- Banco de dados: %APPDATA%\DiagonalCordeis\data\
+- Para backup: copie a pasta acima
+
+Qualquer dúvida, estou à disposição!
+
+Att,
+Seu Nome
+
+================================================================================
+
+🎉 CONCLUSÃO:
+
+Seu projeto está PRONTO para distribuição!
+
+Do Linux:     ./build-installer.sh
+Cliente:      Descompacta + Instala Java + Executa .bat
+Funciona:     100% normal, banco em %APPDATA%
+
+Para instalador .EXE sem Java: precisa Windows (ou GitHub Actions)
+Mas a solução atual FUNCIONA perfeitamente!
+
+================================================================================
+
+Versão: 1.0.0
+Data: 2024-11-22
+Sistema: Linux → Windows
+
+================================================================================

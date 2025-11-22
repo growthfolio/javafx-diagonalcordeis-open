@@ -1,0 +1,148 @@
+/* Modern Authentication Styles - Diagonal Cordéis */
+
+/* Container principal modernizado */
+.modern-auth-container {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 20, 0.0, 0, 2);
+}
+
+/* Estados de foco para campos de entrada */
+.modern-input-container:focused-within {
+    -fx-border-color: #4f46e5 !important;
+    -fx-border-width: 2 !important;
+    -fx-background-color: #fefefe !important;
+}
+
+.modern-input-container:hover:not(:focused-within) {
+    -fx-border-color: #94a3b8 !important;
+    -fx-background-color: #fefefe !important;
+}
+
+/* Botões modernizados */
+.modern-primary-button:hover {
+    -fx-background-color: #4338ca !important;
+    -fx-effect: dropshadow(gaussian, rgba(79, 70, 229, 0.25), 8, 0.0, 0, 2);
+}
+
+.modern-primary-button:pressed {
+    -fx-background-color: #3730a3 !important;
+    -fx-scale-y: 0.98;
+    -fx-scale-x: 0.98;
+}
+
+.modern-secondary-button:hover {
+    -fx-background-color: #e2e8f0 !important;
+    -fx-text-fill: #1e293b !important;
+}
+
+.modern-secondary-button:pressed {
+    -fx-background-color: #cbd5e1 !important;
+    -fx-scale-y: 0.98;
+    -fx-scale-x: 0.98;
+}
+
+/* Links modernizados */
+.modern-link:hover {
+    -fx-text-fill: #6366f1 !important;
+    -fx-underline: true;
+}
+
+/* CheckBox modernizado */
+.modern-checkbox .box {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 2;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+
+.modern-checkbox:selected .box {
+    -fx-background-color: #4f46e5;
+    -fx-border-color: #4f46e5;
+}
+
+.modern-checkbox:selected .mark {
+    -fx-background-color: white;
+}
+
+.modern-checkbox:hover .box {
+    -fx-border-color: #94a3b8;
+}
+
+/* Barra de força da senha */
+.password-strength-bar .bar {
+    -fx-background-color: #e2e8f0;
+    -fx-background-radius: 4;
+    -fx-background-insets: 0;
+}
+
+.password-strength-bar:indeterminate .bar {
+    -fx-background-color: linear-gradient(to right, #ef4444, #f59e0b, #10b981);
+}
+
+/* Estados da barra de força */
+.password-strength-weak .bar {
+    -fx-background-color: #ef4444;
+}
+
+.password-strength-medium .bar {
+    -fx-background-color: #f59e0b;
+}
+
+.password-strength-strong .bar {
+    -fx-background-color: #10b981;
+}
+
+/* Animações suaves */
+.modern-button {
+    -fx-transition: all 0.2s ease;
+}
+
+.modern-input {
+    -fx-transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Estados de erro para campos */
+.input-error {
+    -fx-border-color: #ef4444 !important;
+    -fx-border-width: 2 !important;
+}
+
+.input-success {
+    -fx-border-color: #10b981 !important;
+    -fx-border-width: 2 !important;
+}
+
+/* Mensagens de status */
+.status-message {
+    -fx-font-smoothing-type: lcd;
+    -fx-text-alignment: center;
+}
+
+/* Responsividade e adaptabilidade */
+@media (max-width: 400px) {
+    .modern-auth-container {
+        -fx-max-width: 280px;
+        -fx-padding: 24;
+    }
+}
+
+/* Acessibilidade */
+.modern-button:focused {
+    -fx-effect: dropshadow(gaussian, rgba(79, 70, 229, 0.5), 0, 0.0, 0, 0), 
+                inset-shadow(gaussian, rgba(79, 70, 229, 0.2), 0, 0.0, 0, 0);
+}
+
+.modern-input:focused {
+    -fx-effect: dropshadow(gaussian, rgba(79, 70, 229, 0.25), 0, 0.0, 0, 0);
+}
+
+/* Loading states */
+.loading {
+    -fx-opacity: 0.7;
+    -fx-cursor: wait;
+}
+
+/* Smooth transitions */
+* {
+    -fx-transition: all 0.2s ease;
+}

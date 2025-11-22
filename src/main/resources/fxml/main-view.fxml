@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="850" prefWidth="1100" style="-fx-background-color: a;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.diagonal.cordeis.controller.MainController">
+
+    <!-- HEADER COM TÍTULO E INFORMAÇÕES
+     -->
+    <top>
+        <VBox style="-fx-background-color: linear-gradient(to bottom, #23406e, #19325a);">
+            <ToolBar style="-fx-background-color: transparent; -fx-border-width: 0;">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <FontAwesomeIconView fill="white" glyphName="BOOK" size="24" />
+                    <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" text="SIG-C" />
+                </HBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <HBox alignment="CENTER">
+                    <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" text="Diagonal Cordeis" />
+                </HBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <HBox alignment="CENTER_RIGHT" spacing="10">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #E3F2FD;" text="Usuário:" />
+                    <Label fx:id="userNameLabel" style="-fx-font-size: 12px; -fx-text-fill: white; -fx-font-weight: bold;" />
+                    <Button fx:id="loginButton" onAction="#handleLogin" style="-fx-background-color: transparent; -fx-text-fill: white;">
+                        <graphic>
+                            <FontAwesomeIconView fill="white" glyphName="SIGN_IN" size="16" />
+                        </graphic>
+                    </Button>
+                </HBox>
+            </ToolBar>
+
+            <!-- QUICK STATS BAR -->
+            <HBox alignment="CENTER" spacing="20" style="-fx-padding: 5 20 10 20;">
+                <VBox alignment="CENTER">
+                    <HBox alignment="CENTER" spacing="5">
+                        <FontAwesomeIconView fill="white" glyphName="STAR" size="12" />
+                        <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Simples" />
+                    </HBox>
+                    <Label style="-fx-text-fill: #E3F2FD; -fx-font-size: 10px;" text="Interface intuitiva" />
+                </VBox>
+                <Separator orientation="VERTICAL" style="-fx-background-color: white; -fx-opacity: 0.3;" />
+                <VBox alignment="CENTER">
+                    <HBox alignment="CENTER" spacing="5">
+                        <FontAwesomeIconView fill="white" glyphName="ROCKET" size="12" />
+                        <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Rápido" />
+                    </HBox>
+                    <Label style="-fx-text-fill: #E3F2FD; -fx-font-size: 10px;" text="Impressão direta" />
+                </VBox>
+                <Separator orientation="VERTICAL" style="-fx-background-color: white; -fx-opacity: 0.3;" />
+                <VBox alignment="CENTER">
+                    <HBox alignment="CENTER" spacing="5">
+                        <FontAwesomeIconView fill="white" glyphName="BOOK" size="12" />
+                        <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Integrado" />
+                    </HBox>
+                    <Label style="-fx-text-fill: #E3F2FD; -fx-font-size: 10px;" text="Capa no PDF" />
+                </VBox>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox style="-fx-background-color: #19325a;">
+            <TabPane fx:id="tabPane" prefWidth="1100.0" style="-fx-tab-min-height: 40px; -fx-tab-max-height: 40px; -fx-focus-color: transparent; -fx-faint-focus-color: transparent;" stylesheets="@../css/application.css" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+                <Tab fx:id="tabImpressao">
+                    <graphic>
+                        <HBox alignment="CENTER" spacing="5">
+                            <FontAwesomeIconView glyphName="PRINT" size="14" />
+                            <Label text="Impressão" />
+                        </HBox>
+                    </graphic>
+                </Tab>
+                <Tab fx:id="tabLivros">
+                    <graphic>
+                        <HBox alignment="CENTER" spacing="5">
+                            <FontAwesomeIconView glyphName="BOOK" size="14" />
+                            <Label text="Gerenciar Livros" />
+                        </HBox>
+                    </graphic>
+                </Tab>
+                <Tab fx:id="tabColecoes">
+                    <graphic>
+                        <HBox alignment="CENTER" spacing="5">
+                            <FontAwesomeIconView glyphName="FOLDER" size="14" />
+                            <Label text="Coleções" />
+                        </HBox>
+                    </graphic>
+                </Tab>
+                <Tab fx:id="tabImportar">
+                    <graphic>
+                        <HBox alignment="CENTER" spacing="5">
+                            <FontAwesomeIconView glyphName="DOWNLOAD" size="14" />
+                            <Label text="Importar PDFs" />
+                        </HBox>
+                    </graphic>
+                </Tab>
+            </TabPane>
+        </VBox>
+    </center>
+
+    <!-- FOOTER COM INFORMAÇÕES -->
+    <bottom>
+        <HBox alignment="CENTER" spacing="20" style="-fx-padding: 8; -fx-background-color: #f5f5f5; -fx-border-color: #ddd; -fx-border-width: 1 0 0 0;">
+            <HBox alignment="CENTER" spacing="5">
+                <FontAwesomeIconView fill="#666" glyphName="INFO" size="11" />
+                <Label style="-fx-font-size: 11px; -fx-text-fill: #666;" text="Dica: Os PDFs devem ter a capa integrada na primeira página" />
+            </HBox>
+            <Separator orientation="VERTICAL" />
+            <HBox alignment="CENTER" spacing="5">
+                <FontAwesomeIconView fill="#4CAF50" glyphName="CHECK_CIRCLE" size="11" />
+                <Label style="-fx-font-size: 11px; -fx-text-fill: #4CAF50; -fx-font-weight: bold;" text="Status: Sistema Simplificado" />
+            </HBox>
+        </HBox>
+    </bottom>
+
+
+</BorderPane>

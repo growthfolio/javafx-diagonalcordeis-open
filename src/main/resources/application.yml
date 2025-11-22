@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: diagonal-cordeis
+
+  # DataSource configurado via DataSourceConfig.java
+  # O caminho do banco será determinado automaticamente:
+  # - Dev: ./diagonalcordeis.db
+  # - Prod Windows: %APPDATA%/DiagonalCordeis/data/diagonalcordeis.db
+  datasource:
+    hikari:
+      maximum-pool-size: 1
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    properties:
+      hibernate:
+        format_sql: false
+        enable_lazy_load_no_trans: true
+        jdbc.use_get_generated_keys: true
+        temp.use_jdbc_metadata_defaults: true
+        connection.isolation: 2
+        jdbc.batch_size: 20
+        order_inserts: true
+        order_updates: true
+        jdbc.batch_versioned_data: true
+
+security:
+  password:
+    min-length: 8
+    require-uppercase: true
+    require-lowercase: true
+    require-digits: true
+    require-special-chars: true
+    history-size: 5
+    max-common-passwords: 1000
+  
+  rate-limit:
+    login-attempts: 5
+    window-minutes: 15
+    lockout-duration-minutes: 30
+  
+  session:
+    timeout-minutes: 30
+    max-concurrent: 3
+    persistent: true
+    cleanup-interval-minutes: 5
+  
+  audit:
+    enabled: true
+    log-level: INFO
+    retention-days: 90
+    alert-on-suspicious: true
+
+logging:
+  level:
+    com.diagonal.cordeis.security: INFO

@@ -1,0 +1,176 @@
+name: Build Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:  # Permite executar manualmente
+
+jobs:
+  # Job 1: Compilar instalador Windows no Windows do GitHub
+  build-windows-installer:
+    name: Instalador Windows (.exe)
+    runs-on: windows-latest  # GitHub fornece Windows na nuvem!
+    
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+      
+      - name: Setup JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+      
+      - name: Build instalador Windows
+        run: build-installer.bat
+        shell: cmd
+      
+      - name: Upload instalador
+        uses: actions/upload-artifact@v4
+        with:
+          name: DiagonalCordeis-Windows-Installer
+          path: target/installer/*.exe
+          retention-days: 90
+
+  # Job 2: Compilar pacote JAR no Linux do GitHub
+  build-jar-package:
+    name: Pacote JAR (ZIP)
+    runs-on: ubuntu-latest  # GitHub fornece Linux na nuvem!
+    
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+      
+      - name: Setup JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+      
+      - name: Build pacote JAR
+        run: |
+          chmod +x build-installer.sh
+          ./build-installer.sh
+      
+      - name: Upload pacote ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: DiagonalCordeis-JAR-Package
+          path: target/dist/*.zip
+          retention-days: 90
+
+  # Job 3: Criar release no GitHub
+  create-release:
+    name: Criar Release no GitHub
+    needs: [build-windows-installer, build-jar-package]
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+      
+      - name: Download instalador Windows
+        uses: actions/download-artifact@v4
+        with:
+          name: DiagonalCordeis-Windows-Installer
+          path: release/
+      
+      - name: Download pacote JAR
+        uses: actions/download-artifact@v4
+        with:
+          name: DiagonalCordeis-JAR-Package
+          path: release/
+      
+      - name: Copy installation guide
+        run: cp LEIA-ME-INSTALACAO.txt release/
+      
+      - name: Criar Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: release/*
+          generate_release_notes: true
+          body: |
+            ## 🎉 Diagonal Cordéis - Release ${{ github.ref_name }}
+            
+            Sistema desktop para gestão e impressão de cordéis - Projeto Social ODS 8 e 9
+            
+            ### 📦 Downloads Disponíveis:
+            
+            #### ⭐ Opção 1: Instalador Windows (Recomendado)
+            - **Arquivo**: `Diagonal Cordeis-*.exe`
+            - ✅ Cliente **NÃO precisa instalar Java**
+            - ✅ Instalação profissional (Next → Next → Finish)
+            - ✅ Integração com Menu Iniciar e Área de Trabalho
+            - ✅ Tamanho: ~100-120 MB (inclui JRE)
+            
+            #### 📦 Opção 2: Pacote JAR
+            - **Arquivo**: `DiagonalCordeis-*.zip`
+            - ⚠️ Cliente precisa Java 21 instalado
+            - ✅ Mais leve (~98 MB)
+            - ✅ Portável (pode rodar de pen drive)
+            
+            ### 📋 Requisitos:
+            
+            **Para Instalador (.exe):**
+            - Windows 7, 10 ou 11 (64 bits)
+            - 4 GB RAM
+            - 500 MB espaço em disco
+            
+            **Para Pacote JAR (.zip):**
+            - Windows 7, 10 ou 11 (64 bits)
+            - Java 21 instalado: https://adoptium.net/temurin/releases/?version=21
+            - 4 GB RAM
+            
+            ### 📁 Localização dos Dados:
+            
+            O banco de dados é criado automaticamente em:
+            ```
+            %APPDATA%\DiagonalCordeis\data\diagonalcordeis.db
+            ```
+            
+            Exemplo: `C:\Users\SeuNome\AppData\Roaming\DiagonalCordeis\data\`
+            
+            ### 🔐 Primeiro Acesso:
+            
+            - **Usuário**: `admin`
+            - **Senha**: `admin123`
+            
+            ⚠️ **Importante**: Altere a senha no primeiro acesso!
+            
+            ### 📖 Instalação:
+            
+            **Opção 1 (Instalador):**
+            1. Baixe `Diagonal Cordeis-*.exe`
+            2. Execute o instalador
+            3. Siga o assistente
+            4. Pronto!
+            
+            **Opção 2 (JAR):**
+            1. Instale Java 21
+            2. Baixe e descompacte `DiagonalCordeis-*.zip`
+            3. Execute `DiagonalCordeis.bat`
+            
+            ### 🔄 Atualização:
+            
+            Para atualizar de versão anterior:
+            - Execute o novo instalador (seus dados são preservados)
+            - Ou baixe novo ZIP e substitua os arquivos
+            
+            ### 📚 Documentação:
+            
+            - [README](https://github.com/growthfolio/javafx-diagonalcordeis-open#readme)
+            - [Guia de Instalação](https://github.com/growthfolio/javafx-diagonalcordeis-open/blob/main/LEIA-ME-INSTALACAO.txt)
+            - [Como Distribuir](https://github.com/growthfolio/javafx-diagonalcordeis-open/blob/main/COMO-DISTRIBUIR.md)
+            
+            ### 🐛 Problemas?
+            
+            - [Reportar Bug](https://github.com/growthfolio/javafx-diagonalcordeis-open/issues/new)
+            - [Discussões](https://github.com/growthfolio/javafx-diagonalcordeis-open/discussions)
+            
+            ---
+            
+            **Desenvolvido com ❤️ para a cultura popular brasileira**
