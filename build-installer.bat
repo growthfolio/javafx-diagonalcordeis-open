@@ -55,7 +55,6 @@ jpackage ^
   --input target ^
   --main-jar cordeis-0.0.1-SNAPSHOT.jar ^
   --main-class com.diagonal.cordeis.AppLauncher ^
-  --icon src/main/resources/images/icon.ico ^
   --java-options "-Xms256m" ^
   --java-options "-Xmx1024m" ^
   --java-options "-Dfile.encoding=UTF-8" ^
