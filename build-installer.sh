@@ -52,17 +52,53 @@ echo "Criando pacote ZIP para distribuição..."
 mkdir -p target/dist
 cp target/cordeis-0.0.1-SNAPSHOT.jar target/dist/
 
-# Criar script Windows para execução
+# Criar script Windows para execução robusto com verificação de Java
 cat > target/dist/DiagonalCordeis.bat << 'WINSCRIPT'
 @echo off
 title Diagonal Cordeis
-echo Iniciando Diagonal Cordeis...
-javaw -Xms256m -Xmx1024m -Dfile.encoding=UTF-8 -jar cordeis-0.0.1-SNAPSHOT.jar
+
+REM Mudar para o diretorio da aplicacao
+cd /d "%~dp0"
+
+REM Verificar se Java esta instalado
+where javaw >nul 2>nul
 if %errorlevel% neq 0 (
     echo.
-    echo ERRO: Falha ao iniciar a aplicacao.
-    echo Verifique se o Java 21 esta instalado.
-    pause
+    echo ========================================
+    echo   ERRO: Java nao encontrado!
+    echo ========================================
+    echo.
+    echo Este programa requer Java 21 ou superior.
+    echo.
+    echo Por favor, instale o Java de:
+    echo https://adoptium.net/temurin/releases/?version=21
+    echo.
+    echo Pressione qualquer tecla para fechar...
+    pause >nul
+    exit /b 1
+)
+
+REM Iniciar a aplicacao
+echo Iniciando Diagonal Cordeis...
+javaw -Xms256m -Xmx1024m -Dfile.encoding=UTF-8 -jar "%~dp0cordeis-0.0.1-SNAPSHOT.jar"
+
+REM Verificar se houve erro ao iniciar
+if %errorlevel% neq 0 (
+    echo.
+    echo ========================================
+    echo   ERRO: Falha ao iniciar aplicacao
+    echo ========================================
+    echo.
+    echo Codigo de erro: %errorlevel%
+    echo.
+    echo Possiveis causas:
+    echo - Versao do Java incompativel (necessario Java 21+)
+    echo - Arquivo JAR corrompido ou ausente
+    echo - Falta de memoria
+    echo.
+    echo Pressione qualquer tecla para fechar...
+    pause >nul
+    exit /b %errorlevel%
 )
 WINSCRIPT
 
