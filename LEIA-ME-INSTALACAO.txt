@@ -106,9 +106,13 @@ PROBLEMAS COMUNS:
 ❌ "Java não encontrado"
    Solução: Instale Java 21 de https://adoptium.net/
 
-❌ Aplicação não inicia
-   Solução: Verifique se tem permissão de administrador
-            Execute como Administrador (botão direito → "Executar como administrador")
+❌ Aplicação não inicia (ícone clicado mas nada acontece)
+   Solução: O instalador agora mostra mensagens de erro se algo estiver errado:
+            - Se Java não estiver instalado, mostrará link para download
+            - Se arquivo estiver corrompido, pedirá reinstalação
+            - Se o erro persistir, execute como Administrador 
+              (botão direito → "Executar como administrador")
+   Nota: Versões v1.0.1+ incluem correção para este problema
 
 ❌ Não consegue imprimir
    Solução: Verifique se impressoras estão instaladas e ligadas
