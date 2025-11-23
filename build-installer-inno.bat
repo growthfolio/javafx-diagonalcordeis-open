@@ -34,6 +34,7 @@ echo REM Nota: %%~dp0 = diretorio onde o batch esta (duplo %% por ser echo)
 echo cd /d "%%~dp0"
 echo.
 echo REM Verificar se Java esta instalado
+echo REM Nota: Texto sem acentos propositalmente (evita problemas de encoding)
 echo REM Nota: ^>nul 2^>^&1 redireciona stdout e stderr para nul (silencia a saida)
 echo java -version ^>nul 2^>^&1
 echo if %%errorlevel%% neq 0 ^(
