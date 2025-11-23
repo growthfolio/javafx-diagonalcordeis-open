@@ -61,7 +61,7 @@ REM Mudar para o diretorio da aplicacao
 cd /d "%~dp0"
 
 REM Verificar se Java esta instalado
-where javaw >nul 2>nul
+java -version >nul 2>&1
 if %errorlevel% neq 0 (
     echo.
     echo ========================================
@@ -78,28 +78,24 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-REM Iniciar a aplicacao
-echo Iniciando Diagonal Cordeis...
-javaw -Xms256m -Xmx1024m -Dfile.encoding=UTF-8 -jar "%~dp0cordeis-0.0.1-SNAPSHOT.jar"
-
-REM Verificar se houve erro ao iniciar
-if %errorlevel% neq 0 (
+REM Verificar se o arquivo JAR existe
+if not exist "%~dp0cordeis-0.0.1-SNAPSHOT.jar" (
     echo.
     echo ========================================
-    echo   ERRO: Falha ao iniciar aplicacao
+    echo   ERRO: Arquivo da aplicacao nao encontrado!
     echo ========================================
     echo.
-    echo Codigo de erro: %errorlevel%
-    echo.
-    echo Possiveis causas:
-    echo - Versao do Java incompativel (necessario Java 21+)
-    echo - Arquivo JAR corrompido ou ausente
-    echo - Falta de memoria
+    echo O arquivo cordeis-0.0.1-SNAPSHOT.jar nao foi encontrado.
+    echo Reinstale a aplicacao.
     echo.
     echo Pressione qualquer tecla para fechar...
     pause >nul
-    exit /b %errorlevel%
+    exit /b 1
 )
+
+REM Iniciar a aplicacao
+echo Iniciando Diagonal Cordeis...
+start "" javaw -Xms256m -Xmx1024m -Dfile.encoding=UTF-8 -jar "%~dp0cordeis-0.0.1-SNAPSHOT.jar"
 WINSCRIPT
 
 # Criar README para cliente

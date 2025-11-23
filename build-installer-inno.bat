@@ -33,7 +33,7 @@ echo REM Mudar para o diretorio da aplicacao
 echo cd /d "%%~dp0"
 echo.
 echo REM Verificar se Java esta instalado
-echo where javaw ^>nul 2^>nul
+echo java -version ^>nul 2^>^&1
 echo if %%errorlevel%% neq 0 ^(
 echo     echo.
 echo     echo ========================================
@@ -50,28 +50,24 @@ echo     pause ^>nul
 echo     exit /b 1
 echo ^)
 echo.
-echo REM Iniciar a aplicacao
-echo echo Iniciando Diagonal Cordeis...
-echo javaw -Xms256m -Xmx1024m -Dfile.encoding=UTF-8 -jar "%%~dp0cordeis-0.0.1-SNAPSHOT.jar"
-echo.
-echo REM Verificar se houve erro ao iniciar
-echo if %%errorlevel%% neq 0 ^(
+echo REM Verificar se o arquivo JAR existe
+echo if not exist "%%~dp0cordeis-0.0.1-SNAPSHOT.jar" ^(
 echo     echo.
 echo     echo ========================================
-echo     echo   ERRO: Falha ao iniciar aplicacao
+echo     echo   ERRO: Arquivo da aplicacao nao encontrado!
 echo     echo ========================================
 echo     echo.
-echo     echo Codigo de erro: %%errorlevel%%
-echo     echo.
-echo     echo Possiveis causas:
-echo     echo - Versao do Java incompativel ^(necessario Java 21+^)
-echo     echo - Arquivo JAR corrompido ou ausente
-echo     echo - Falta de memoria
+echo     echo O arquivo cordeis-0.0.1-SNAPSHOT.jar nao foi encontrado.
+echo     echo Reinstale a aplicacao.
 echo     echo.
 echo     echo Pressione qualquer tecla para fechar...
 echo     pause ^>nul
-echo     exit /b %%errorlevel%%
+echo     exit /b 1
 echo ^)
+echo.
+echo REM Iniciar a aplicacao
+echo echo Iniciando Diagonal Cordeis...
+echo start "" javaw -Xms256m -Xmx1024m -Dfile.encoding=UTF-8 -jar "%%~dp0cordeis-0.0.1-SNAPSHOT.jar"
 ) > target\installer-files\DiagonalCordeis.bat
 
 echo.
