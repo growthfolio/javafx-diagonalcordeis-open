@@ -33,6 +33,7 @@ echo REM Mudar para o diretorio da aplicacao
 echo cd /d "%%~dp0"
 echo.
 echo REM Verificar se Java esta instalado
+echo REM Nota: ^>nul 2^>^&1 redireciona stdout e stderr para nul (silencia a saida)
 echo java -version ^>nul 2^>^&1
 echo if %%errorlevel%% neq 0 ^(
 echo     echo.
