@@ -253,4 +253,4 @@ A correção resolve completamente o problema de "instalador não abre a aplica�
 
 **Data**: 2024-11-23  
 **Autor**: GitHub Copilot + Felipe Macedo  
-**Status**: ✅ Implementado e Testado
+**Status**: ✅ Implementado (Requer teste em ambiente Windows com próximo build)

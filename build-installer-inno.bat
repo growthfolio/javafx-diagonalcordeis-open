@@ -30,6 +30,7 @@ echo @echo off
 echo title Diagonal Cordeis
 echo.
 echo REM Mudar para o diretorio da aplicacao
+echo REM Nota: %%~dp0 = diretorio onde o batch esta (duplo %% por ser echo)
 echo cd /d "%%~dp0"
 echo.
 echo REM Verificar se Java esta instalado

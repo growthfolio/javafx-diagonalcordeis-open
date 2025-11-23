@@ -61,6 +61,7 @@ REM Mudar para o diretorio da aplicacao
 cd /d "%~dp0"
 
 REM Verificar se Java esta instalado
+REM Nota: 'java -version' retorna exit codes corretos (diferente de 'javaw')
 java -version >nul 2>&1
 if %errorlevel% neq 0 (
     echo.
